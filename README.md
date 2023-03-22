@@ -48,21 +48,21 @@ python train_net.py \
 |:----:|:--------:|:-------:|:----:|:----:|:----:|:----:|:----:|:-------------------------------------------------------------------------------------------------------------------------------------:|
 | MDQE |  R-50    | f3+360p | 31.0 | 55.9 | 32.0 | 14.5 | 36.3 | [model](https://drive.google.com/file/d/1uaDUECTt6hnO65gLGTlkyBWa_pHkfIdk/view?usp=share_link), [config](./configs/R50_ovis_360.yaml) |
 | MDQE |  R-50    | f3+720p | 33.0 | 57.4 | 32.2 | 15.4 | 38.4 |                                    [model](), [config](./configs/R50_ovis_720.yaml)                                                   |                            
-| MDQE |  Swin-L  |   f2    | 41.6 | 68.1 | 42.8 | 18.1 | 45.9 |                                            [model](), [config](./configs/swinl_ovis.yaml)                                             |
+| MDQE |  Swin-L  |   f3    | 41.6 | 68.1 | 42.8 | 18.1 | 45.9 |                                            [model](), [config](./configs/swinl_ovis.yaml)                                             |
 
-### YouTubeVIS-2021 + YouTubeVIS-2022 Long videos
-| Name | Backbone | Frames |  AP  | AP50 | AP75 | AR1  | AR10  | AP<sup>L</sup> | AP50<sup>L</sup> | AP75<sup>L</sup> | AR1<sup>L</sup> | AR10<sup>L</sup> |                                                               Download                                                               |
-|:----:|:--------:|:------:|:----:|:----:|:----:|:----:|:-----:|:--------------:|:-----:|:-----:|:----:|:-----:|:------------------------------------------------------------------------------------------------------------------------------------:|
+### YouTubeVIS-2021 
+| Name | Backbone | Frames |  AP  | AP50 | AP75 | AR1  | AR10  |                                                               Download                                                               |
+|:----:|:--------:|:------:|:----:|:----:|:----:|:----:|:-----:|:------------------------------------------------------------------------------------------------------------------------------------:|
 | MDQE |   R-50   |   f3   | 44.6 | 68.3 | 49.5 | 37.9 | 50.3  |
-| MDQE |   R-50   |   f1   | 44.9 | 67.8 | 48.1 | 37.8 | 49.4  |      33.2      | 63.1  | 33.1  | 27.0 | 37.1  | [model](https://drive.google.com/file/d/1W-BHfur9iz81xJBVWa2n8WZzQjnDdTZA/view?usp=share_link), [config](./configs/R50_ytvis21.yaml) |
-| VITA |  Swin-L  |   f1   | 56.2 | 80.0 | 61.1 | 44.9 | 59.1  |                |       |       |      |       |                                          [model](), [config](./configs/swinl_ytvis21.yaml)                                           |
+| MDQE |   R-50   |   f1   | 44.9 | 67.8 | 48.1 | 37.8 | 49.4  | [model](https://drive.google.com/file/d/1W-BHfur9iz81xJBVWa2n8WZzQjnDdTZA/view?usp=share_link), [config](./configs/R50_ytvis21.yaml) |
+| MDQE |  Swin-L  |   f1   | 56.2 | 80.0 | 61.1 | 44.9 | 59.1  |                                          [model](), [config](./configs/swinl_ytvis21.yaml)                                           |
 
 
 ### YouTubeVIS-2019
 | Name | Backbone | Frames |  AP  | AP50 | AP75 | AR1  | AR10 |                     Download                     |
 |:----:|:--------:|:------:|:----:|:----:|:----:|:----:|:----:|:------------------------------------------------:| 
-| MDQE |   R-50   |   3    | 47.3 | 66.9 | 53.1 | 42.9 | 52.9 | [model](), [config](./configs/R50_ytvis19.yaml)  |
-| MDQE |  Swin-L  |   3    | 63.0 | 86.9 | 67.9 | 56.3 | 68.1 | [model](), [config](./configs/R101_ytvis19.yaml) |
+| MDQE |   R-50   |   f3   | 47.3 | 66.9 | 53.1 | 42.9 | 52.9 | [model](), [config](./configs/R50_ytvis19.yaml)  |
+| MDQE |  Swin-L  |   f3   | 63.0 | 86.9 | 67.9 | 56.3 | 68.1 | [model](), [config](./configs/R101_ytvis19.yaml) |
 
 ## License
 The majority of MDQE is licensed under a [Apache-2.0 License](LICENSE).
@@ -84,4 +84,3 @@ If you use VITA in your research or wish to refer to the baseline results publis
 ## Acknowledgement
 
 Our code is largely based on [Detectron2](https://github.com/facebookresearch/detectron2), [IFC](https://github.com/sukjunhwang/IFC), [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR) and [VITA](https://github.com/sukjunhwang/VITA). We are truly grateful for their excellent work.
-# MDQE_CVPR2023
