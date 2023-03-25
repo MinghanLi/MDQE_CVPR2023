@@ -2,7 +2,7 @@
 
 [LI Minghan](https://scholar.google.com/citations?user=LhdBgMAAAAAJ), [LI Shuai](https://scholar.google.com/citations?user=Bd73ldQAAAAJ&hl=zh-TW), [XIANG Wang Meng](https://scholar.google.com.hk/citations?user=LFNwNF4AAAAJ&hl=en), [ZHANG Lei](https://www4.comp.polyu.edu.hk/~cslzhang/)
 
-[[`arXiv`](https://arxiv.org/abs/2206.04403)] 
+[[`arXiv`]()] 
 
 <div align="center">
   <img src="mdqe_overview.jpg" width="100%" height="100%"/>
