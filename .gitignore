@@ -7,7 +7,7 @@ output
 *.json
 *.diff
 *.jpg
-!/imgs
+!imgs
 
 # compilation and distribution
 __pycache__
