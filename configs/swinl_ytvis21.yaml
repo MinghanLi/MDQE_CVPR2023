@@ -1,0 +1,55 @@
+_BASE_: "./swinl_coco.yaml"
+MODEL:
+  WEIGHTS: "pretrained/mdqe_swinl_patch4_window24_384_22k_coco_bs8_3x_f1.pth"
+  MDQE:
+    NUM_CLASSES: 40
+    WINDOW_CLIPASS: 7
+    CLIP_STRIDE: 1
+    SAMPLING_FRAME_NUM_TEST: 3
+    WINDOW_FRAME_NUM_TEST: 10
+    MERGE_ON_CPU: True
+    APPLY_CLS_THRES: 0.1
+DATASETS:
+  DATASET_RATIO: [ 0.75, 1.0 ]
+  TRAIN: ("coco2ytvis2021_train", "ytvis_2021_train")
+  TEST: ("ytvis_2021_val",)
+SOLVER:
+  IMS_PER_BATCH: 8
+  BASE_LR: 0.00005
+  STEPS: (20000, )
+  MAX_ITER: 24000
+  WARMUP_FACTOR: 1.0
+  WARMUP_ITERS: 10
+  WEIGHT_DECAY: 0.05
+  OPTIMIZER: "ADAMW"
+  BACKBONE_MULTIPLIER: 0.1
+  CLIP_GRADIENTS:
+    ENABLED: True
+    CLIP_TYPE: "full_model"
+    CLIP_VALUE: 0.01
+    NORM_TYPE: 2.0
+INPUT:
+  FORMAT: "RGB"
+  SAMPLING_FRAME_NUM: 3
+  AUGMENTATIONS: []
+  RANDOM_FLIP: "flip_by_clip"
+  MIN_SIZE_TRAIN_SAMPLING: "choice_by_clip"
+  MIN_SIZE_TRAIN: (320, 352, 384, 416, 448, 480, 512, 544)
+  MAX_SIZE_TRAIN: 1024
+  MIN_SIZE_TEST: 480
+  CROP:
+    ENABLED: True
+    TYPE: "relative_range"
+    SIZE: [0.7, 0.7]
+  PSEUDO:
+    AUGMENTATIONS: [ 'rotation' ]
+    MIN_SIZE_TRAIN: (320, 352, 384, 416, 448, 480, 512, 544)
+    MAX_SIZE_TRAIN: 1024
+    CROP:
+      ENABLED: True
+      TYPE: "absolute_range"
+      SIZE: (384, 600)
+TEST:
+  EVAL_PERIOD: 5000
+  DETECTIONS_PER_IMAGE: 10
+OUTPUT_DIR: output/ytvis/mdqe_swinl_ytvis21_bs8_f3/

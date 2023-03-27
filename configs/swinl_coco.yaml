@@ -1,0 +1,65 @@
+MODEL:
+  META_ARCHITECTURE: "MDQE"
+  WEIGHTS: "pretrained/imagenet/swinv2_large_patch4_window12_192_22k_d2.pth"
+  PIXEL_MEAN: [ 123.675, 116.280, 103.530 ]
+  PIXEL_STD: [ 58.395, 57.120, 57.375 ]
+  MASK_ON: True
+  BACKBONE:
+    NAME: "build_swinv2_backbone"
+  SWIN:
+    EMBED_DIM: 192
+    DEPTHS: [ 2, 2, 18, 2 ]
+    NUM_HEADS: [ 6, 12, 24, 48 ]
+    WINDOW_SIZE: 12
+    MLP_RATIO: 4
+    DROP_PATH_RATE: 0.2
+    APE: False
+  MDQE:
+    NUM_OBJECT_QUERIES: 200
+    MLP_RATIO: 8
+    ENC_LAYERS: 6
+    DEC_LAYERS: 6
+    NUM_FEATURE_LEVELS: 4
+    DEC_TEMPORAL: True
+    HIDDEN_DIM: 192
+    NUM_CLASSES: 80
+    TRACK_EMBED_DIM: 64
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+SOLVER:
+  IMS_PER_BATCH: 8
+  BASE_LR: 0.00005
+  STEPS: (472000,)  # 3x on 118k images in CoCo training data
+  MAX_ITER: 534000
+  WARMUP_FACTOR: 1.0
+  WARMUP_ITERS: 10
+  WEIGHT_DECAY: 0.05
+  OPTIMIZER: "ADAMW"
+  BACKBONE_MULTIPLIER: 0.1
+  CLIP_GRADIENTS:
+    ENABLED: True
+    CLIP_TYPE: "full_model"
+    CLIP_VALUE: 0.01
+    NORM_TYPE: 2.0
+INPUT:
+  FORMAT: "RGB"
+  SAMPLING_FRAME_NUM: 1
+  AUGMENTATIONS: []
+  RANDOM_FLIP: "flip_by_clip"
+  MIN_SIZE_TRAIN_SAMPLING: "choice_by_clip"
+  MIN_SIZE_TRAIN: (352, 384, 416, 448, 480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  CROP:
+    ENABLED: True
+    TYPE: "absolute_range"
+    SIZE: (384, 600)
+TEST:
+  EVAL_PERIOD: 5000
+  DETECTIONS_PER_IMAGE: 100
+DATALOADER:
+  FILTER_EMPTY_ANNOTATIONS: False
+  NUM_WORKERS: 4
+VERSION: 2
+OUTPUT_DIR: output/coco/mdqe_swinl_patch4_window24_384_22k_coco_bs8_3x_f1/

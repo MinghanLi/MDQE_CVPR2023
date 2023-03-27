@@ -7,7 +7,7 @@ output
 *.json
 *.diff
 *.jpg
-!mdqe_overview.jpg
+!/imgs
 
 # compilation and distribution
 __pycache__
@@ -52,5 +52,7 @@ _darcs
 /snippet
 /output
 /pretrained
+/tools/*
+!/tools/analyze_model.py
 
 

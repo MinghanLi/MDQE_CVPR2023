@@ -1,0 +1,59 @@
+_BASE_: "./R50_coco.yaml"
+MODEL:
+  META_ARCHITECTURE: "MDQE"
+  WEIGHTS: "pretrained/coco/mdqe_r50_coco_bs16_3x_f4_ft.pth"
+  MASK_ON: True
+  MDQE:
+    NUM_CLASSES: 25
+    WINDOW_CLIPASS: 5
+    CLIP_STRIDE: 1
+    SAMPLING_FRAME_NUM_TEST: 3
+    WINDOW_FRAME_NUM_TEST: 10
+    MERGE_ON_CPU: True
+    APPLY_CLS_THRES: 0.1
+DATASETS:
+  DATASET_RATIO: [0.75, 1.0]
+  TRAIN: ("coco2ovis_train", "ytvis_ovis_train")
+  TEST: ("ytvis_ovis_val",)
+SOLVER:
+  IMS_PER_BATCH: 8
+  BASE_LR: 0.00005
+  STEPS: (20000, )
+  MAX_ITER: 24000
+  WARMUP_FACTOR: 1.0
+  WARMUP_ITERS: 10
+  WEIGHT_DECAY: 0.0001
+  OPTIMIZER: "ADAMW"
+  BACKBONE_MULTIPLIER: 0.1
+  CLIP_GRADIENTS:
+    ENABLED: True
+    CLIP_TYPE: "full_model"
+    CLIP_VALUE: 0.01
+    NORM_TYPE: 2.0
+INPUT:
+  FORMAT: "RGB"
+  SAMPLING_FRAME_NUM: 3
+  SAMPLING_FRAME_RANGE: 10
+  AUGMENTATIONS: []
+  RANDOM_FLIP: "flip_by_clip"
+  MIN_SIZE_TRAIN_SAMPLING: "choice_by_clip"
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 720
+  CROP:
+    ENABLED: True
+    TYPE: "relative_range"
+    SIZE: [0.8, 0.8]
+  PSEUDO:
+    AUGMENTATIONS: [ 'rotation' ]
+    MIN_SIZE_TRAIN_SAMPLING: "choice_by_clip"
+    MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+    MAX_SIZE_TRAIN: 1333
+    CROP:
+      ENABLED: True
+      TYPE: "absolute_range"
+      SIZE: (384, 600)
+TEST:
+  EVAL_PERIOD: 5000
+  DETECTIONS_PER_IMAGE: 15
+OUTPUT_DIR: output/ovis/mdqe_r50_ovis_bs8_720p_f3/

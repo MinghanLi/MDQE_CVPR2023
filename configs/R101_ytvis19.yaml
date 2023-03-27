@@ -1,0 +1,7 @@
+_BASE_: "./R50_ytvis19.yaml"
+MODEL:
+  WEIGHTS: "pretrained/coco/mdqe_r101_coco_bs16_3x_f1.pth"
+  RESNETS:
+    DEPTH: 101
+    STRIDE_IN_1X1: True
+OUTPUT_DIR: output/ytvis/mdqe_r101_ytvis19_bs16_360p_f4/
