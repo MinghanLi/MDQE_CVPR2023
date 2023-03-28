@@ -2,14 +2,14 @@
 
 [Minghan LI](https://scholar.google.com/citations?user=LhdBgMAAAAAJ), [Shuai LI](https://scholar.google.com/citations?user=Bd73ldQAAAAJ&hl=zh-TW), [Wangmeng XAING](https://scholar.google.com.hk/citations?user=LFNwNF4AAAAJ&hl=en), [Lei ZHANG](https://www4.comp.polyu.edu.hk/~cslzhang/)
 
-[[`arXiv`]()] 
+[[`arXiv`](http://arxiv.org/abs/2303.14395)] 
 
 <div align="center">
-  <img src="imgs/MDQE_overview.jpg" width="100%" height="100%"/>
+  <img src="imgs/MDQE_overview.jpg" width="80%" height="100%"/>
 </div><br/>
 
 <div align="center">
-  <img src="imgs/sota_yt21_coco.png" width="100%" height="100%"/>
+  <img src="imgs/sota_yt21_coco.png" width="80%" height="100%"/>
 </div><br/>
 
 ## Updates
