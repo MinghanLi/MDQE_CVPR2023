@@ -78,11 +78,13 @@ However, portions of the project are available under separate license terms: Det
 If you use MDQE in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
 
 ```BibTeX
-@inproceedings{li2022mdqe,
-  title={MDQE: Mining Discriminative Query Embeddings to Segment Occluded Instances on Challenging Videos},
-  author={Minghan Li, Shuai Li, Wangmeng Xiang, and Zhang Lei},
-  journal={.},
-  year={2023}
+@misc{li2023mdqe,
+    title={MDQE: Mining Discriminative Query Embeddings to Segment Occluded Instances on Challenging Videos},
+    author={Minghan Li and Shuai Li and Wangmeng Xiang and Lei Zhang},
+    year={2023},
+    eprint={2303.14395},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
 }
 ```
 
