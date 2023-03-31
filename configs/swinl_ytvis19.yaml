@@ -1,5 +1,5 @@
 _BASE_: "./swinl_ytvis21.yaml"
 DATASETS:
   TRAIN: ("coco2ytvis2019_train", "ytvis_2019_train")
-  TEST: ("ytvis_2019_val",)
-OUTPUT_DIR: output/ytvis/mdqe_r50_ytvis19_bs16_360p_f4/
+  TEST: ("ytvis_2019_val",)   # during training, use ("ytvis_2019_dev",)
+OUTPUT_DIR: output/ytvis/mdqe_r50_ytvis19_bs8_f3/

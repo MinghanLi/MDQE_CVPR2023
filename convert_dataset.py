@@ -58,7 +58,9 @@ for convert_dict, src_path, out_path, msg in convert_list:
 # STEP 2: Since ground-truth annotations in valid set are not published, we split the videos of training set
 # in to train_sub set (90%) and valid_sub set (10%) for convenient model evaluation.
 valid_precent = 0.1
-annotation_files = ["ytvis_2019/train.json", "ytvis_2021/train.json", "ovis/train.json"]
+annotation_files = [os.path.join(_root, "ytvis_2019/train.json"),
+                    os.path.join(_root, "ytvis_2021/train.json"),
+                    os.path.join(_root, "ovis/train.json")]
 for annotation_file in annotation_files:
    # split videos in training set into train_sub set and valid_sub set
     print('loading annotations into memory...')

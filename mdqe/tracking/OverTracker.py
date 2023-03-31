@@ -13,7 +13,7 @@ class OverTracker:
      We only store the instance masks of a long clip, instead of all instance masks in the whole video.
     """
 
-    def __init__(self, num_frames, window_frames, clip_stride, num_classes, mask_dim, embed_dim, 
+    def __init__(self, num_max_inst, num_frames, window_frames, clip_stride, num_classes, mask_dim, embed_dim,
                  image_size, device, apply_cls_thres):
         self.num_frames = num_frames
         self.window_frames = window_frames
@@ -25,7 +25,7 @@ class OverTracker:
         self.device = device
         self.apply_cls_thres = apply_cls_thres
 
-        self.num_max_inst = 120
+        self.num_max_inst = num_max_inst
         self.num_inst = 0
         self.mem_length = window_frames + num_frames
         self.num_clips = window_frames // self.clip_stride + 2
@@ -143,7 +143,7 @@ class OverTracker:
             siou_scores = torch.zeros(query_embed_mem.shape[0], input_clip.query_embeds.shape[0], device=self.device)
             if len(inter_saved_idx) > 0:
                 if self.beta_siou > 0:
-                    i_masks = input_clip.mask_logits[:, inter_input_idx]
+                    i_masks = input_clip.mask_logits[:, inter_input_idx].float()
                     s_masks = self.saved_logits[:self.num_clip, :self.num_inst, inter_saved_idx]
                     s_valid = self.saved_valid[:self.num_clip, :self.num_inst].any(dim=-1)
                     s_masks = (s_masks.sum(0) / s_valid.sum(0).clamp(min=1).reshape(-1, 1, 1, 1))

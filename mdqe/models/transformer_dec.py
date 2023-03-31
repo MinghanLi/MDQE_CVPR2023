@@ -367,17 +367,18 @@ class DecoderDefAttnLayer(nn.Module):
         # x_inst_ref_boxes: BTxQx4
         n_frames = self.n_frames if self.training else shortcut_w.shape[0]
         ct = int((n_frames - 1) / 2)
-        t_idx_start = max(ct - int((self.n_frames - 1) / 2), 0)
-        t_idx_end = ct + self.n_frames
+        itv = max(int(n_frames / self.n_frames), 1)
+        t_idx_start = max(ct - int((self.n_frames - 1) / 2) * itv, 0)
+        tca_frames = list(range(t_idx_start, n_frames, itv)[:self.n_frames])
 
         time_weights = self.time_weights(rearrange(shortcut_w, '(B T) Q C -> B T Q C', T=n_frames))
         shortcut_x = rearrange(shortcut_x, '(B T) Q C -> B T Q C', T=n_frames)
         x_inst2 = (F.softmax(time_weights, dim=1) * shortcut_x).sum(dim=1)  # BxTx(Q+P)xC -> Bx(Q+P)xC
         x_inst = x_inst2 if x_inst is None else x_inst
 
-        padding_masks = rearrange(padding_masks, '(B T) N -> B T N', T=n_frames)[:, t_idx_start:t_idx_end] \
+        padding_masks = rearrange(padding_masks, '(B T) N -> B T N', T=n_frames)[:, tca_frames] \
             if padding_masks is not None else None
-        input_flatten = rearrange(input_flatten, '(B T) N C -> B T N C', T=n_frames)[:, t_idx_start:t_idx_end]
+        input_flatten = rearrange(input_flatten, '(B T) N C -> B T N C', T=n_frames)[:, tca_frames]
         if input_flatten.shape[1] < self.n_frames:
             pad_frames = self.n_frames-input_flatten.shape[1]
             if padding_masks is not None:

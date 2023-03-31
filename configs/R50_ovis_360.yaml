@@ -5,16 +5,16 @@ MODEL:
   MASK_ON: True
   MDQE:
     NUM_CLASSES: 25
-    WINDOW_CLIPASS: 5
+    WINDOW_INTER_FRAME_ASSOCIATION: 5
     CLIP_STRIDE: 1
     SAMPLING_FRAME_NUM_TEST: 4
-    WINDOW_FRAME_NUM_TEST: 20
-    MERGE_ON_CPU: True
+    MAX_NUM_INSTANCES: 120
+    WINDOW_FRAME_NUM_TEST: 30
     APPLY_CLS_THRES: 0.1
 DATASETS:
   DATASET_RATIO: [0.75, 1.0]
   TRAIN: ("coco2ovis_train", "ytvis_ovis_train")
-  TEST: ("ytvis_ovis_val",)
+  TEST: ("ytvis_ovis_val",)   # during training, use TEST: ("ytvis_ovis_dev",)
 SOLVER:
   IMS_PER_BATCH: 16
   BASE_LR: 0.0001
@@ -30,10 +30,12 @@ SOLVER:
     CLIP_TYPE: "full_model"
     CLIP_VALUE: 0.01
     NORM_TYPE: 2.0
+  CHECKPOINT_PERIOD: 2000
 INPUT:
   FORMAT: "RGB"
   SAMPLING_FRAME_NUM: 4
   SAMPLING_FRAME_RANGE: 10
+  PRETRAIN_FRAME_NUM: 4
   AUGMENTATIONS: []
   RANDOM_FLIP: "flip_by_clip"
   MIN_SIZE_TRAIN_SAMPLING: "choice_by_clip"
@@ -54,6 +56,6 @@ INPUT:
       TYPE: "absolute_range"
       SIZE: (384, 600)
 TEST:
-  EVAL_PERIOD: 5000
+  EVAL_PERIOD: 2000
   DETECTIONS_PER_IMAGE: 15
 OUTPUT_DIR: output/ovis/mdqe_r50_ovis_bs16_360p_f4/

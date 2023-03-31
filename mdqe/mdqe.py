@@ -189,6 +189,7 @@ class MDQE(nn.Module):
         self.detections_per_image = cfg.TEST.DETECTIONS_PER_IMAGE
         self.n_frames_test = cfg.MODEL.MDQE.SAMPLING_FRAME_NUM_TEST
         self.n_frames_window_test = cfg.MODEL.MDQE.WINDOW_FRAME_NUM_TEST
+        self.n_max_inst = cfg.MODEL.MDQE.MAX_NUM_INSTANCES
 
     def forward(self, batched_inputs):
         """
@@ -339,8 +340,9 @@ class MDQE(nn.Module):
                 # OverTracker is memory-friendly, processing instance segmentation (long) clip by (long) clip
                 # where the length of long clip is controlled by self.n_frames_window_test
                 video_output = OverTracker(
-                    self.n_frames_test, self.n_frames_window_test, self.clip_stride, self.num_classes, self.mask_dim,
-                    self.hidden_dim, mask_feats_size, self.merge_device, self.apply_cls_thres
+                    self.n_max_inst, self.n_frames_test, self.n_frames_window_test, self.clip_stride,
+                    self.num_classes, self.mask_dim, self.hidden_dim, mask_feats_size,
+                    self.merge_device, self.apply_cls_thres
                 )
             video_output.update(clip_results)
 
@@ -369,8 +371,8 @@ class MDQE(nn.Module):
         query_embeds = output['query_embed'][0]  # QxE
 
         sorted_scores, sorted_idxs = mask_cls.max(-1)[0].sort(descending=True)
-        valid_idx = sorted_idxs[sorted_scores > self.apply_cls_thres]
-        if valid_idx.nelement() > 0:
+        valid_idx = sorted_idxs[sorted_scores >= min(self.apply_cls_thres, sorted_scores[0])]
+        if valid_idx.nelement() > 1:
             query_sim = torch.mm(F.normalize(query_embeds[valid_idx], dim=-1),
                                  F.normalize(query_embeds[valid_idx], dim=-1).t())
             max_query_sim = torch.triu(query_sim, diagonal=1).max(0)[0]
@@ -437,12 +439,12 @@ class MDQE(nn.Module):
 
         out_masks_video = []
         for idx in range(total_num_insts):
-            m_video = [m[idx] if idx < m.shape[0] else torch.zeros_like(m[0]) for m in pred_masks_clips]
+            m_video = [m[idx].cpu() if idx < m.shape[0] else torch.zeros_like(m[0]).cpu() for m in pred_masks_clips]
             m_video = torch.cat(m_video, dim=0)
             out_masks_video.append(m_video)
 
         labels = torch.arange(self.num_classes, device=self.device).unsqueeze(0).repeat(out_cls.shape[0], 1).flatten(0, 1)
-        out_cls = out_cls.flatten()
+        out_cls = out_cls.flatten().cpu()
 
         num_topk = max(out_cls.gt(0.05).sum(), 10)
         out_scores, topk_indices = out_cls.topk(num_topk, sorted=False)

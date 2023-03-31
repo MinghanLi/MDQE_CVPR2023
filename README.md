@@ -5,14 +5,15 @@
 [[`arXiv`](http://arxiv.org/abs/2303.14395)] 
 
 <div align="center">
-  <img src="imgs/MDQE_overview.jpg" width="80%" height="100%"/>
+  <img src="imgs/MDQE_overview.jpg" width="90%" height="100%"/>
 </div><br/>
 
 <div align="center">
-  <img src="imgs/sota_yt21_coco.png" width="80%" height="100%"/>
+  <img src="imgs/inter_mask.jpg" width="90%" height="100%"/>
 </div><br/>
 
 ## Updates
+* **`March 31, 2023`:** Trained models are released. 
 * **`March 28, 2023`:** Code and paper are now available! 
 
 ## Installation
@@ -49,25 +50,25 @@ python train_net.py \
 | MDQE | [model](https://drive.google.com/file/d/1lQzh-7U3lelZWWzhPN9H5B6nF7_Jl9uQ/view?usp=sharing), [config](./configs/R50_coco.yaml)  |     [model](https://drive.google.com/file/d/1Dqf2xZqfX0CGOufURukuHTkX168dHXR7/view?usp=sharing), [config](./configs/swinl_coco.yaml)     |
 
 ### OVIS
-| Name | Backbone |  Frames  |                                             AP                                             |                                                             Download                                                             |
-|:----:|:--------:|:--------:|:------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
-| MDQE |   R50    | f4+360p  |                                          [29.2]()                                          |                                         [model](), [config](./configs/R50_ovis_360.yaml)                                         |
-| MDQE |   R50    | f4+7260p |                                          [33.0]()                                          |                                         [model](), [config](./configs/R50_ovis_720.yaml)                                         |
-| MDQE |  Swin-L  | f2+480p  | [41.0](https://drive.google.com/file/d/1reZvXhvU-U99WUZydfEHDtnxqgTb6V8w/view?usp=sharing) | [model](https://drive.google.com/file/d/1IepHYepNZUhXRJSM1DVgDwWd9MyF7a7x/view?usp=sharing), [config](./configs/swinl_ovis.yaml) |
-| MDQE |  Swin-L  | f2+640p  | [42.6](https://drive.google.com/file/d/1VExkn98fsWKyOgDEIc8vorrxe0nQaGI9/view?usp=sharing) | [model](https://drive.google.com/file/d/1IepHYepNZUhXRJSM1DVgDwWd9MyF7a7x/view?usp=sharing), [config](./configs/swinl_ovis.yaml) |
+| Name | Backbone | Frames  |                                              AP                                               |                                                                Download                                                                |
+|:----:|:--------:|:-------:|:---------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
+| MDQE |   R50    | f4+360p | [30.7](https://drive.google.com/file/d/1O-KhfM98-Cb1gTooOxYqmmSaR7iCaY2H/view?usp=share_link) | [model](https://drive.google.com/file/d/1c8hOTxhqMrIUzHOkxM5FVfzX0pIk-Ks_/view?usp=share_link), [config](./configs/R50_ovis_360.yaml)  |
+| MDQE |   R50    | f4+640p | [32.3](https://drive.google.com/file/d/190xLUlg8i1_mbn4TerqAQQPNP09AKwlQ/view?usp=share_link) | [model](https://drive.google.com/file/d/1a1GHhu-_jiwsBRkc8t_IdXMso4s1D8OG/view?usp=share_link), [config](./configs/R50_ovis_720.yaml)  |
+| MDQE |  Swin-L  | f2+480p |  [41.0](https://drive.google.com/file/d/1reZvXhvU-U99WUZydfEHDtnxqgTb6V8w/view?usp=sharing)   |    [model](https://drive.google.com/file/d/1IepHYepNZUhXRJSM1DVgDwWd9MyF7a7x/view?usp=sharing), [config](./configs/swinl_ovis.yaml)    |
+| MDQE |  Swin-L  | f2+640p |  [42.6](https://drive.google.com/file/d/1VExkn98fsWKyOgDEIc8vorrxe0nQaGI9/view?usp=sharing)   |    [model](https://drive.google.com/file/d/1IepHYepNZUhXRJSM1DVgDwWd9MyF7a7x/view?usp=sharing), [config](./configs/swinl_ovis.yaml)    |
 
 ### YouTubeVIS-2021 
-| Name | Backbone | Frames  |    AP    |                     Download                      |
-|:----:|:--------:|:-------:|:--------:|:-------------------------------------------------:|
-| MDQE |   R50    | f4+360p | [44.5]() |  [model](), [config](./configs/R50_ytvis21.yaml)  |
-| MDQE |  Swin-L  | f3+360p | [56.2]() | [model](), [config](./configs/swinl_ytvis21.yaml) |
+| Name | Backbone | Frames  |                                              AP                                               |                                                                Download                                                                |
+|:----:|:--------:|:-------:|:---------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
+| MDQE |   R50    | f4+360p | [46.6](https://drive.google.com/file/d/1SPAbogC7BH_IcwtE2ZtHHoccQVd2DaJY/view?usp=share_link) |  [model](https://drive.google.com/file/d/1gpJOGG6h-vZGifS-pIIJ67EQL-zAlUSP/view?usp=share_link), [config](./configs/R50_ytvis21.yaml)  |
+| MDQE |  Swin-L  | f3+360p | [55.5](https://drive.google.com/file/d/1fgPzxP3HSwUr2WmT4ZJayMMj4OLztHhV/view?usp=share_link) | [model](https://drive.google.com/file/d/1_ZtIM-FLOaJbklnNRYihkZjmNvqX4FEo/view?usp=share_link), [config](./configs/swinl_ytvis21.yaml) |
 
 
 ### YouTubeVIS-2019
-| Name | Backbone | Frames  |    AP    |                     Download                      |
-|:----:|:--------:|:-------:|:--------:|:-------------------------------------------------:| 
-| MDQE |   R50    | f4+360p | [47.3]() |  [model](), [config](./configs/R50_ytvis19.yaml)  |
-| MDQE |  Swin-L  | f3+360p | [63.0]() | [model](), [config](./configs/swinl_ytvis19.yaml) |
+| Name | Backbone | Frames  |                                              AP                                               |                                                                Download                                                                |
+|:----:|:--------:|:-------:|:---------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------:| 
+| MDQE |   R50    | f4+360p | [47.8](https://drive.google.com/file/d/1N4r2I_ZNn8AmCZG51DolqG7vrE4r6aAE/view?usp=share_link) |  [model](https://drive.google.com/file/d/1nLkyIIjVqAwbyRzX4-nRjWh1g9wpwZ8L/view?usp=share_link), [config](./configs/R50_ytvis19.yaml)  |
+| MDQE |  Swin-L  | f3+360p | [59.9](https://drive.google.com/file/d/160EYZmAfGGHyECeehlxG0vkzFw3BV0gZ/view?usp=share_link) | [model](https://drive.google.com/file/d/1fr8RrQgX41rwjHtnvJHzqvEcGTMYqgVS/view?usp=share_link), [config](./configs/swinl_ytvis19.yaml) |
 
 ## License
 The majority of MDQE is licensed under the [Apache-2.0 License](LICENSE).
