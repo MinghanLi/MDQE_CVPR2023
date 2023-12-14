@@ -1,0 +1,14 @@
+cython==0.29.30
+opencv-python==4.6.0.66
+scipy==1.8.1
+shapely==1.8.2
+timm==0.6.5
+einops
+pandas==1.4.3
+seaborn==0.11.2
+scikit-image==0.19.3
+setuptools==59.4.0
+yacs==0.1.8
+fvcore
+motmetrics==1.1.2
+gdown

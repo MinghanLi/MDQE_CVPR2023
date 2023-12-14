@@ -8,7 +8,7 @@ output
 *.diff
 *.jpg
 !/imgs/MDQE_overview.jpg
-!/imgs/sota_yt21_coco.png
+!/imgs/inter_mask.jpg
 
 # compilation and distribution
 __pycache__
